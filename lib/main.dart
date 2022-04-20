@@ -30,17 +30,26 @@ class MyGame extends FlameGame with TapDetector {
   late SpriteAnimation idleAnimation;
 
   late SpriteAnimationComponent player;
+  late SpriteComponent worldOffice;
 
   // 0=idle, 1=down, 2=left, 3=up, 4=down
   int direction = 0;
-  double animationSpeed = 0.25;
+  final double animationSpeed = 0.25;
+  final double playerSpeed = 80;
 
   @override
   Color backgroundColor() => const Color(0x00000000);
 
   @override
   Future<void> onLoad() async {
-    await add(MyWorld());
+    //await add(MyWorld());
+    await super.onLoad();
+
+    Sprite worldOfficeSprite = await loadSprite('Office_Design_2.gif');
+    worldOffice = SpriteComponent()
+      ..sprite = worldOfficeSprite
+      ..size = worldOfficeSprite.originalSize;
+    add(worldOffice);
 
     final spriteSheet = SpriteSheet(image: await images.load('Adam_run_16x16.png'), srcSize: Vector2(16, 32));
 
@@ -56,6 +65,7 @@ class MyGame extends FlameGame with TapDetector {
       ..size = Vector2(32, 64);
 
     add(player);
+    camera.followComponent(player, worldBounds: Rect.fromLTRB(0, 0, worldOffice.size.x, worldOffice.size.y));
   }
 
   @override
@@ -67,19 +77,27 @@ class MyGame extends FlameGame with TapDetector {
         break;
       case 1:
         player.animation = rightAnimation;
-        player.x += 1;
+        if (player.x < worldOffice.size.x - player.width * 2) {
+          player.x += dt * playerSpeed;
+        }
         break;
       case 2:
         player.animation = upAnimation;
-        player.y -= 1;
+        if (player.y > player.height * 2) {
+          player.y -= dt * playerSpeed;
+        }
         break;
       case 3:
         player.animation = leftAnimation;
-        player.x -= 1;
+        if (player.x > 0) {
+          player.x -= dt * playerSpeed;
+        }
         break;
       case 4:
         player.animation = downAnimation;
-        player.y += 1;
+        if (player.y < worldOffice.size.y) {
+          player.y += dt * playerSpeed;
+        }
         break;
     }
   }
