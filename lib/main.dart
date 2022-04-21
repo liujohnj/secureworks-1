@@ -1,37 +1,26 @@
+import 'package:flame/collisions.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'button_controller.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flame/geometry.dart';
 
-
-class MyWorld extends SpriteComponent {
-  MyWorld() : super(size: Vector2(512, 544), anchor: Anchor.center);
-
-  @override
-  Future<void> onLoad() async {
-    sprite = await Sprite.load('Office_Design_2.gif');
-  }
-
-  @override
-  void onGameResize(Vector2 gameSize) {
-    super.onGameResize(gameSize);
-    position = gameSize / 2;
-  }
-}
-
-class MyGame extends FlameGame with TapDetector {
+class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
   late SpriteAnimation rightAnimation;
   late SpriteAnimation upAnimation;
   late SpriteAnimation leftAnimation;
   late SpriteAnimation downAnimation;
   late SpriteAnimation idleAnimation;
-  late SpriteAnimationComponent player;
-  late SpriteComponent worldOffice;
+  late PlayerComponent player;
+  late double mapWidth;
+  late double mapHeight;
 
   // 0=idle, 1=down, 2=left, 3=up, 4=down
   int direction = 0;
@@ -44,15 +33,23 @@ class MyGame extends FlameGame with TapDetector {
 
   @override
   Future<void> onLoad() async {
-    //await add(MyWorld());
     await super.onLoad();
+    final homeMap = await TiledComponent.load('Office_Design_2.tmx', Vector2.all(32.0));
+    add(homeMap);
 
-    Sprite worldOfficeSprite = await loadSprite('Office_Design_2.gif');
-    //Sprite worldOfficeSprite = await loadSprite('floor_plan_0.png');
-    worldOffice = SpriteComponent()
-      ..sprite = worldOfficeSprite
-      ..size = worldOfficeSprite.originalSize;
-    add(worldOffice);
+    mapWidth = homeMap.tileMap.map.width * 32.0;
+    mapHeight = homeMap.tileMap.map.height * 32.0;
+
+    final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Employees');
+
+    for (var employeeBox in employeeGroup.objects) {
+      add(EmployeeComponent()
+        ..position=Vector2(employeeBox.x, employeeBox.y)
+        ..width = employeeBox.width
+        ..height = employeeBox.height
+        ..debugMode = true);
+    }
+
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('bensound-enigmatic.mp3');
 
@@ -66,13 +63,14 @@ class MyGame extends FlameGame with TapDetector {
     downAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 18, to: 24);
     idleAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 18, to: 19);
 
-    player = SpriteAnimationComponent()
+    player = PlayerComponent()
       ..animation = downAnimation
-      ..position = Vector2(0, 280)
+      ..position = Vector2(200, 280)
+      ..debugMode = true
       ..size = Vector2(32, 64);
 
     add(player);
-    camera.followComponent(player, worldBounds: Rect.fromLTRB(0, 0, worldOffice.size.x, worldOffice.size.y));
+    camera.followComponent(player, worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
   }
 
   @override
@@ -89,7 +87,7 @@ class MyGame extends FlameGame with TapDetector {
         break;
       case 1:
         player.animation = rightAnimation;
-        if (player.x < worldOffice.size.x - player.width * 2) {
+        if (player.x < mapWidth - player.width * 2) {
           player.x += dt * playerSpeed;
         }
         break;
@@ -107,7 +105,7 @@ class MyGame extends FlameGame with TapDetector {
         break;
       case 4:
         player.animation = downAnimation;
-        if (player.y < worldOffice.size.y) {
+        if (player.y < mapHeight - player.height * 1.5) {
           player.y += dt * playerSpeed;
         }
         break;
@@ -142,6 +140,23 @@ void main() {
       ),
     ),
   ));
+}
 
-  //GameWidget(game: myGame));
+class EmployeeComponent extends PositionComponent with CollisionCallbacks {
+  EmployeeComponent() {
+    add(RectangleHitbox());
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    print('I made a contact');
+    // remove(this);  <-- this will remove bounding box
+    super.onCollisionEnd(other);
+  }
+}
+
+class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
+  PlayerComponent() {
+    add(RectangleHitbox());
+  }
 }
