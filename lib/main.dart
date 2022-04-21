@@ -1,9 +1,12 @@
+import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'button_controller.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 
 class MyWorld extends SpriteComponent {
@@ -21,14 +24,12 @@ class MyWorld extends SpriteComponent {
   }
 }
 
-
 class MyGame extends FlameGame with TapDetector {
   late SpriteAnimation rightAnimation;
   late SpriteAnimation upAnimation;
   late SpriteAnimation leftAnimation;
   late SpriteAnimation downAnimation;
   late SpriteAnimation idleAnimation;
-
   late SpriteAnimationComponent player;
   late SpriteComponent worldOffice;
 
@@ -36,6 +37,7 @@ class MyGame extends FlameGame with TapDetector {
   int direction = 0;
   final double animationSpeed = 0.25;
   final double playerSpeed = 80;
+  String soundTrackName = 'Bensound';
 
   @override
   Color backgroundColor() => const Color(0x00000000);
@@ -46,10 +48,15 @@ class MyGame extends FlameGame with TapDetector {
     await super.onLoad();
 
     Sprite worldOfficeSprite = await loadSprite('Office_Design_2.gif');
+    //Sprite worldOfficeSprite = await loadSprite('floor_plan_0.png');
     worldOffice = SpriteComponent()
       ..sprite = worldOfficeSprite
       ..size = worldOfficeSprite.originalSize;
     add(worldOffice);
+    FlameAudio.bgm.initialize();
+    FlameAudio.audioCache.load('bensound-enigmatic.mp3');
+
+    overlays.add('ButtonController');
 
     final spriteSheet = SpriteSheet(image: await images.load('Adam_run_16x16.png'), srcSize: Vector2(16, 32));
 
@@ -66,6 +73,11 @@ class MyGame extends FlameGame with TapDetector {
 
     add(player);
     camera.followComponent(player, worldBounds: Rect.fromLTRB(0, 0, worldOffice.size.x, worldOffice.size.y));
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
   }
 
   @override
@@ -108,24 +120,28 @@ class MyGame extends FlameGame with TapDetector {
     if (direction > 4) {
       direction = 0;
     }
-    print('change animation');
+    print('change animation up');
   }
+
 }
 
 void main() {
-  final myGame = MyGame();
-
-  /*
-  Widget build(BuildContext context) {
-    return GameWidget(
-      game: myGame, overlayBuilderMap: {
-        'InventoryMenu': (BuildContext context, MyGame myGame) {
-          return Text('An inventory menu');
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.fullScreen();
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: GameWidget(
+        game: MyGame(),
+        overlayBuilderMap: {
+          'ButtonController': (BuildContext context, MyGame game) {
+            return ButtonController(
+              game: game,
+            );
+          }
         },
-      },
-    );
-  }
-  */
+      ),
+    ),
+  ));
 
-  runApp(GameWidget(game: myGame));
+  //GameWidget(game: myGame));
 }
