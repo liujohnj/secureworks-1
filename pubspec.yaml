@@ -74,6 +74,19 @@ flutter:
     - assets/audio/bensound-enigmatic.mp3
     - assets/tiles/Office_Design_2.tmx
     - assets/images/red_gem.png
+    - assets/images/floor_plan_1.png
+    - assets/tiles/floor_plan_1.tmx
+    - assets/images/1_Generic_32x32.png
+    - assets/images/2_LivingRoom_32x32.png
+    - assets/images/5_Classroom_and_library_32x32.png
+    - assets/images/7_Art_32x32.png
+    - assets/images/Interiors_free_32x32.png
+    - assets/images/Modern_Office_Black_Shadow_32x32.png
+    - assets/images/Modern_Office_Shadowless_32x32.png
+    - assets/images/Premade_Character_32x32_15.png
+    - assets/images/Room_Builder_3d_walls_32x32.png
+    - assets/images/Room_Builder_Office_32x32.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

@@ -31,13 +31,15 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final homeMap = await TiledComponent.load('Office_Design_2.tmx', Vector2.all(32.0));
+    //final homeMap = await TiledComponent.load('Office_Design_2.tmx', Vector2.all(32.0));
+    final homeMap = await TiledComponent.load('floor_plan_1.tmx', Vector2.all(32.0));
     add(homeMap);
 
     mapWidth = homeMap.tileMap.map.width * 32.0;
     mapHeight = homeMap.tileMap.map.height * 32.0;
 
-    final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Employees');
+    //final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Employees');
+    final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Characters');
 
     for (var employeeBox in employeeGroup.objects) {
       add(EmployeeComponent(game: this)
