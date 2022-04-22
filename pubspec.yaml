@@ -73,6 +73,7 @@ flutter:
     - assets/images/floor_plan_0.png
     - assets/audio/bensound-enigmatic.mp3
     - assets/tiles/Office_Design_2.tmx
+    - assets/images/red_gem.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

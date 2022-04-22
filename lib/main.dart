@@ -11,22 +11,19 @@ import 'package:flutter/material.dart';
 import 'button_controller.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/geometry.dart';
+import 'components/employee.dart';
+import 'components/player.dart';
 
 class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
-  late SpriteAnimation rightAnimation;
-  late SpriteAnimation upAnimation;
-  late SpriteAnimation leftAnimation;
-  late SpriteAnimation downAnimation;
-  late SpriteAnimation idleAnimation;
   late PlayerComponent player;
   late double mapWidth;
   late double mapHeight;
 
   // 0=idle, 1=down, 2=left, 3=up, 4=down
   int direction = 0;
-  final double animationSpeed = 0.25;
   final double playerSpeed = 80;
   String soundTrackName = 'Bensound';
+  int numChallengesCompleted = 0;
 
   @override
   Color backgroundColor() => const Color(0x00000000);
@@ -43,7 +40,7 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
     final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Employees');
 
     for (var employeeBox in employeeGroup.objects) {
-      add(EmployeeComponent()
+      add(EmployeeComponent(game: this)
         ..position=Vector2(employeeBox.x, employeeBox.y)
         ..width = employeeBox.width
         ..height = employeeBox.height
@@ -55,16 +52,7 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
 
     overlays.add('ButtonController');
 
-    final spriteSheet = SpriteSheet(image: await images.load('Adam_run_16x16.png'), srcSize: Vector2(16, 32));
-
-    rightAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 0, to: 6);
-    upAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 6, to: 12);
-    leftAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 12, to: 18);
-    downAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 18, to: 24);
-    idleAnimation = spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 18, to: 19);
-
-    player = PlayerComponent()
-      ..animation = downAnimation
+    player = PlayerComponent(game: this)
       ..position = Vector2(200, 280)
       ..debugMode = true
       ..size = Vector2(32, 64);
@@ -79,40 +67,6 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
   }
 
   @override
-  void update(double dt) {
-    super.update(dt);
-    switch (direction) {
-      case 0:
-        player.animation = idleAnimation;
-        break;
-      case 1:
-        player.animation = rightAnimation;
-        if (player.x < mapWidth - player.width * 2) {
-          player.x += dt * playerSpeed;
-        }
-        break;
-      case 2:
-        player.animation = upAnimation;
-        if (player.y > player.height * 2) {
-          player.y -= dt * playerSpeed;
-        }
-        break;
-      case 3:
-        player.animation = leftAnimation;
-        if (player.x > 0) {
-          player.x -= dt * playerSpeed;
-        }
-        break;
-      case 4:
-        player.animation = downAnimation;
-        if (player.y < mapHeight - player.height * 1.5) {
-          player.y += dt * playerSpeed;
-        }
-        break;
-    }
-  }
-
-  @override
   void onTapUp(TapUpInfo info) {
     direction += 1;
     if (direction > 4) {
@@ -120,7 +74,6 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
     }
     print('change animation up');
   }
-
 }
 
 void main() {
@@ -140,23 +93,4 @@ void main() {
       ),
     ),
   ));
-}
-
-class EmployeeComponent extends PositionComponent with CollisionCallbacks {
-  EmployeeComponent() {
-    add(RectangleHitbox());
-  }
-
-  @override
-  void onCollisionEnd(PositionComponent other) {
-    print('I made a contact');
-    // remove(this);  <-- this will remove bounding box
-    super.onCollisionEnd(other);
-  }
-}
-
-class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
-  PlayerComponent() {
-    add(RectangleHitbox());
-  }
 }
