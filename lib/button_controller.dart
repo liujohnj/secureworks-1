@@ -28,29 +28,26 @@ class ButtonController extends StatelessWidget {
                 FlameAudio.bgm.stop();
               },
             ),
+
             Text(
               game.soundTrackName,
               style: TextStyle(color: Colors.pink.shade200, fontSize: 20),
             ),
+
+            Spacer(),
+
+            Image.asset(
+                'assets/images/red_gem.png',
+                scale: 0.8),
+            SizedBox(
+              width: 12,
+            ),
+            Text(
+                '${game.numChallengesCompleted}',
+                style: TextStyle(fontSize: 28, color: Colors.black45),
+            ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Row(
-            children: [
-              Image.asset(
-                  'assets/images/red_gem.png',
-                  scale: 0.8),
-              SizedBox(
-                width: 12,
-              ),
-              Text(
-                  '${game.numChallengesCompleted}',
-                  style: TextStyle(fontSize: 28, color: Colors.black45),
-              )
-            ],
-          ),
-        )
       ],
     );
   }

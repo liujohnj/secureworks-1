@@ -139,7 +139,7 @@ class MainGameState extends State<MainGamePage> {
             },
           ),
           Align(
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.all(32.0),
               child:
