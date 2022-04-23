@@ -12,13 +12,14 @@ import 'button_controller.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/geometry.dart';
 import 'components/employee.dart';
+import 'components/obstacles.dart';
 import 'components/player.dart';
 import 'helpers/joypad.dart';
 import 'helpers/direction.dart';
 
 class MyGame extends FlameGame with HasCollisionDetection {
   //late Player player;
-  final player = Player();
+  Player player = Player();
   late double mapWidth;
   late double mapHeight;
 
@@ -42,6 +43,11 @@ class MyGame extends FlameGame with HasCollisionDetection {
     mapHeight = homeMap.tileMap.map.height * 32.0;
 
     final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Characters');
+    final obstacleGroup = homeMap.tileMap.getObjectGroupFromLayer('Obstacles');
+
+    for (final obj in obstacleGroup!.objects) {
+      add(Obstacles(size: Vector2(obj.width, obj.height), position: Vector2(obj.x, obj.y)));
+    }
 
     for (var employeeBox in employeeGroup.objects) {
       add(EmployeeComponent(game: this)

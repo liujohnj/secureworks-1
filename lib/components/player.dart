@@ -4,6 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:game_1/main.dart';
 import '../helpers/direction.dart';
 import 'package:flame/geometry.dart';
+import 'obstacles.dart';
 
 class Player extends SpriteAnimationComponent
     with HasGameRef, CollisionCallbacks {
@@ -15,20 +16,15 @@ class Player extends SpriteAnimationComponent
   late SpriteAnimation downAnimation;
   late SpriteAnimation idleAnimation;
   final double animationSpeed = 0.25;
-  final double playerSpeed = 100.0;
+  double playerSpeed = 100.0;
 
   Direction direction = Direction.none;
-
-  //temp
   bool hasCollided = false;
-  bool collisionDirection = true;
+  Direction collisionDirection = Direction.none;
 
   //PlayerComponent({required this.game}) {
-  Player()
-      : super(
-          size: Vector2(32, 64),
-          position: Vector2(200, 280),
-    ) {
+  Player() : super(size: Vector2(32, 64), position: Vector2(200, 280),) {
+    debugMode = true;
     add(RectangleHitbox());
   }
 
@@ -51,6 +47,23 @@ class Player extends SpriteAnimationComponent
     idleAnimation =
         spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, from: 18, to: 19);
     //animation = idleAnimation;
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollision(intersectionPoints, other);
+
+      if (other is Obstacles) {
+        if (!hasCollided) {
+          hasCollided = true;
+          collisionDirection = direction;
+        }
+      }
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    hasCollided = false;
   }
 
   @override
