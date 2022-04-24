@@ -48,7 +48,7 @@ class MyGame extends FlameGame with HasCollisionDetection {
     }
 
     for (var employeeBox in employeeGroup.objects) {
-      add(EmployeeComponent(game: this)
+      add(EmployeeComponent()
         ..position=Vector2(employeeBox.x, employeeBox.y)
         ..width = employeeBox.width
         ..height = employeeBox.height
