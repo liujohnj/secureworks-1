@@ -23,9 +23,6 @@ class MyGame extends FlameGame with HasCollisionDetection {
   late double mapWidth;
   late double mapHeight;
 
-  // 0=idle, 1=down, 2=left, 3=up, 4=down
-  //int direction = 0;
-  //Direction direction = Direction.none;
   final double playerSpeed = 80;
   String soundTrackName = 'Bensound';
   int numChallengesCompleted = 0;
@@ -62,39 +59,16 @@ class MyGame extends FlameGame with HasCollisionDetection {
 
     overlays.add('ButtonController');
 
-    //player = PlayerComponent(game: this)
-    //final player = Player();
-    /*
-    player = Player()
-      ..position = Vector2(200, 280)
-      ..debugMode = true
-      ..size = Vector2(32, 64);
-    */
-
     add(player);
     camera.followComponent(player, worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
   }
 
-  /*
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-  }
-  */
-
-  /*
-  @override
-  void onTapUp(TapUpInfo info) {
-    direction += 1;
-    if (direction > 4) {
-      direction = 0;
-    }
-    print('change animation up');
-  }
-  */
-
   void onJoypadDirectionChanged(Direction joypadDirection) {
     player.direction = joypadDirection;
+  }
+
+  void onActionButtonPressed() {
+    print("action button pressed");
   }
 }
 
@@ -151,7 +125,21 @@ class MainGameState extends State<MainGamePage> {
               child:
               Joypad(onDirectionChanged: game.onJoypadDirectionChanged),
             ),
-          )
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child:
+              FloatingActionButton(
+                onPressed: () {
+                  game.onActionButtonPressed();
+                },
+                backgroundColor: Colors.green,
+                child: const Icon(Icons.navigation),
+              ),
+            ),
+          ),
         ],
       ),
     );
