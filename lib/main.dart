@@ -16,6 +16,7 @@ import 'components/obstacles.dart';
 import 'components/player.dart';
 import 'helpers/joypad.dart';
 import 'helpers/direction.dart';
+import 'show_menu.dart' as sm;
 
 class MyGame extends FlameGame with HasCollisionDetection {
   //late Player player;
@@ -133,7 +134,7 @@ class MainGameState extends State<MainGamePage> {
               child:
               FloatingActionButton(
                 onPressed: () {
-                  game.onActionButtonPressed();
+                  sm.showMenu(context);
                 },
                 backgroundColor: Colors.green,
                 child: const Icon(Icons.navigation),
