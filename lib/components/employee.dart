@@ -8,22 +8,45 @@ import '../show_dialog.dart';
 
 class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGameRef<MyGame> {
   //final MyGame game;
+  bool in_dialog = false;
+  bool first_contact_alice = true;
   EmployeeComponent() {
     add(RectangleHitbox());
   }
 
   @override
   void onCollisionStart(Set<Vector2> points, PositionComponent other) async {
+    print(EmployeeComponent);
     print("Hit hit hit");
-    var message = "Hello, you must be the new intern. My name is Alice. How are you?";
-    DialogBox dialogBox = DialogBox(text: message, size: gameRef.size);
-    gameRef.add(dialogBox);
+    print(points);
+    double x = points.first.x;
+    double y = points.first.y;
+    double x_offset = -100.0;
+    double y_offset = -150.0;
+    print(other);
+    late String message;
+    if (in_dialog == false) {
+      in_dialog = true;
+      if (first_contact_alice == true) {
+        message = "Hello, you must be the new intern. My name is Alice. How are you?";
+        first_contact_alice = false;
+      } else {
+        message = "Back so soon? Have a great day!";
+      }
 
-    Future.delayed(Duration(seconds: 30), () {
-      print("removing");
-      gameRef.remove(dialogBox);
-      print("removed");
-    });
+      DialogBox dialogBox = DialogBox(text: message, size: gameRef.size, position: Vector2(x + x_offset, y + y_offset));
+      gameRef.add(dialogBox);
+
+      Future.delayed(Duration(seconds: 15), () {
+        print("removing");
+        gameRef.remove(dialogBox);
+        print("removed");
+        in_dialog = false;
+      });
+    }
+
+
+
   }
 
   @override
