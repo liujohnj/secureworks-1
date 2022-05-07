@@ -8,7 +8,13 @@ void showChallengeCompromisePark(BuildContext context) {
       builder: (BuildContext context) {
         return AlertDialog(
             title: new Text("Alert!!"),
-            content: new Text("You are awesome!"),
+            content: Column(
+              children: <Widget>[
+                  Text("Blah blah blah"),
+                  Text("Yada yada yada"),
+                  Text("You have completed this challenge."),
+              ],
+            ),
             actions: <Widget>[
               new TextButton(
                   child: new Text("OK"),

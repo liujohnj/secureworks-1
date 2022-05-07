@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:game_1/show_challenge_compromise_park.dart';
 import 'package:game_1/show_challenges_menu.dart';
 import 'challenges.dart';
 
@@ -65,9 +66,9 @@ void showChallenges(BuildContext ctx, challenges) {
           SimpleDialogOption(
             child: Text(X_compromise_park + 'Compromise in the park (...more)', style: TextStyle(color: colorChallengeText)),
             onPressed: () {
-              // Do something
+              showChallengeCompromisePark(ctx);
               print('Compromise in the park');
-              Navigator.of(ctx).pop();
+              //Navigator.of(ctx).pop();
             },
           ),
           SimpleDialogOption(

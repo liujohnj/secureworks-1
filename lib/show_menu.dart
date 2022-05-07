@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:game_1/show_challenges_menu.dart';
 
+import 'main.dart';
+
 void showMenu(BuildContext ctx, challenges) {
   showDialog(
     context: ctx,
@@ -22,9 +24,10 @@ void showMenu(BuildContext ctx, challenges) {
           SimpleDialogOption(
             child: const Text('Show Scratchpad', style: TextStyle(color: Colors.green)),
             onPressed: () {
-              // Do something
+              scratchpad.contents.add("this is a password I found");
               print('You have selected to Show Scratchpad');
-              Navigator.of(ctx).pop();
+              print(scratchpad.contents);
+              //Navigator.of(ctx).pop();
             },
           ),
           SimpleDialogOption(

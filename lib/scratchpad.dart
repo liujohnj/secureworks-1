@@ -1,0 +1,3 @@
+class Scratchpad {
+  var contents = [];
+}

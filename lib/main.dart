@@ -9,6 +9,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:game_1/scratchpad.dart';
 import 'button_controller.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/geometry.dart';
@@ -24,6 +25,7 @@ import 'dart:collection';
 //import 'show_text_2.dart';
 
 Challenges challenges = Challenges();
+Scratchpad scratchpad = Scratchpad();
 
 final style = TextStyle(color: Colors.red);
 final regular = TextPaint(style: style);
