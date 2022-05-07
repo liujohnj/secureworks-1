@@ -7,8 +7,6 @@ import '../show_dialog.dart' as sd;
 import '../show_dialog.dart';
 
 
-
-
 class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGameRef<MyGame> {
   //final MyGame game;
   bool in_dialog = false;
@@ -35,6 +33,7 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
     late String message;
     if (in_dialog == false) {
       in_dialog = true;
+      challenges.logout_laxness = true;
       if (name == 'Alice') {
         if (first_contact_alice == true) {
           message =

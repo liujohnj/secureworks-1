@@ -12,21 +12,25 @@ import 'package:flutter/material.dart';
 import 'button_controller.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/geometry.dart';
+import 'challenges.dart';
 import 'components/employee.dart';
 import 'components/obstacles.dart';
 import 'components/player.dart';
 import 'helpers/joypad.dart';
 import 'helpers/direction.dart';
 import 'show_menu.dart' as sm;
+import 'dart:collection';
 //import 'show_text.dart';
 //import 'show_text_2.dart';
 
+Challenges challenges = Challenges();
 
 final style = TextStyle(color: Colors.red);
 final regular = TextPaint(style: style);
 
 class MyGame extends FlameGame with HasCollisionDetection {
   //late Player player;
+
   Player player = Player();
   late double mapWidth;
   late double mapHeight;
@@ -95,7 +99,6 @@ class MyGame extends FlameGame with HasCollisionDetection {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
-
   runApp(const App());
 }
 
@@ -121,6 +124,7 @@ class MainGamePage extends StatefulWidget {
 
 class MainGameState extends State<MainGamePage> {
   MyGame game = MyGame();
+  //Challenges challenges = Challenges();
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +157,7 @@ class MainGameState extends State<MainGamePage> {
               child:
               FloatingActionButton(
                 onPressed: () {
-                  sm.showMenu(context);
+                  sm.showMenu(context, challenges);
                 },
                 backgroundColor: Colors.green,
                 child: const Icon(Icons.navigation),

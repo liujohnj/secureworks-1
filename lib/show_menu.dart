@@ -1,7 +1,9 @@
+import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:game_1/show_challenges_menu.dart';
 
-void showMenu(BuildContext ctx) {
+void showMenu(BuildContext ctx, challenges) {
   showDialog(
     context: ctx,
     builder: (_) {
@@ -12,9 +14,9 @@ void showMenu(BuildContext ctx) {
           SimpleDialogOption(
             child: const Text('View Challenges', style: TextStyle(color: Colors.green)),
             onPressed: () {
-              // Do something
+              showChallenges(ctx, challenges);
               print('You have selected to View Challenges');
-              Navigator.of(ctx).pop();
+              //Navigator.of(ctx).pop();
             },
           ),
           SimpleDialogOption(
