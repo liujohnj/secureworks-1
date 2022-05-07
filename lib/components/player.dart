@@ -23,7 +23,7 @@ class Player extends SpriteAnimationComponent
   Direction collisionDirection = Direction.none;
 
   //PlayerComponent({required this.game}) {
-  Player() : super(size: Vector2(32, 64), position: Vector2(200, 280),) {
+  Player() : super(size: Vector2(32, 64), position: Vector2(342, 891),) {
     debugMode = true;
     add(RectangleHitbox());
   }

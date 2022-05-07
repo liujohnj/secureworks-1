@@ -10,13 +10,14 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
   //final MyGame game;
   bool in_dialog = false;
   bool first_contact_alice = true;
+  late String name;
   EmployeeComponent() {
     add(RectangleHitbox());
   }
 
   @override
   void onCollisionStart(Set<Vector2> points, PositionComponent other) async {
-    print(EmployeeComponent);
+    print(name);
     print("Hit hit hit");
     print(points);
     double x = points.first.x;
@@ -27,12 +28,18 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
     late String message;
     if (in_dialog == false) {
       in_dialog = true;
-      if (first_contact_alice == true) {
-        message = "Hello, you must be the new intern. My name is Alice. How are you?";
-        first_contact_alice = false;
-      } else {
-        message = "Back so soon? Have a great day!";
+      if (name == 'Alice') {
+        if (first_contact_alice == true) {
+          message =
+          "Hello, you must be the new intern. My name is Alice. How are you?";
+          first_contact_alice = false;
+        } else {
+          message = "Back so soon? Have a great day!";
+        }
+      } else if (name == 'Bob') {
+        message = "My name is Bob";
       }
+
 
       DialogBox dialogBox = DialogBox(text: message, size: gameRef.size, position: Vector2(x + x_offset, y + y_offset));
       gameRef.add(dialogBox);
@@ -44,9 +51,6 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
         in_dialog = false;
       });
     }
-
-
-
   }
 
   @override

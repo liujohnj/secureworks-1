@@ -63,7 +63,10 @@ class MyGame extends FlameGame with HasCollisionDetection {
     }
 
     for (var employeeBox in employeeGroup.objects) {
+      print("new employee being added: ");
+      print(employeeBox.name);
       add(EmployeeComponent()
+        ..name = employeeBox.name
         ..position = Vector2(employeeBox.x, employeeBox.y)
         ..width = employeeBox.width
         ..height = employeeBox.height
