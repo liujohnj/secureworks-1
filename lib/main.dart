@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:game_1/scratchpad.dart';
+import 'package:game_1/show_monitor.dart';
 import 'button_controller.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/geometry.dart';

@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:game_1/show_challenges_menu.dart';
+import 'package:game_1/show_monitor.dart';
 import 'package:game_1/show_scratchpad.dart';
 
 import 'main.dart';
@@ -35,9 +36,10 @@ void showMenu(BuildContext ctx, challenges) {
           SimpleDialogOption(
             child: const Text('Use USB Thumbdrive', style: TextStyle(color: Colors.green)),
             onPressed: () {
-              // Do something
+              showMonitor(ctx);
+              //DropDownMonitor monitor = DropDownMonitor();
               print('You have selected to use USB Thumbdrive');
-              Navigator.of(ctx).pop();
+              // Navigator.of(ctx).pop();
             },
           ),
           SimpleDialogOption(
