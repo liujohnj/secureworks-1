@@ -16,14 +16,14 @@ void showChallenges(BuildContext ctx, challenges) {
     builder: (_) {
 
 
-     String X_logout_laxness = "[  ]  ";
+     String X_logout_laziness = "[  ]  ";
      String X_brute_raise = "[  ]  ";
      String X_sticky_note = "[  ]  ";
      String X_ripped_hash = "[  ]  ";
      String X_compromise_park = "[  ]  ";
 
-     if (challenges.logout_laxness == true) {
-       X_logout_laxness = "[X]  ";
+     if (challenges.logout_laziness == true) {
+       X_logout_laziness = "[X]  ";
      }
 
 
@@ -32,10 +32,10 @@ void showChallenges(BuildContext ctx, challenges) {
         backgroundColor: Colors.amber,
         children: [
           SimpleDialogOption(
-            child: Text(X_logout_laxness + "Logout laxness (...more)", style: TextStyle(color: colorChallengeText)),
+            child: Text(X_logout_laziness + "Logout laziness (...more)", style: TextStyle(color: colorChallengeText)),
             onPressed: () {
               //showChallenges(ctx, challenges);
-              print('Logout laxness');
+              print('Logout laziness');
               //Navigator.of(ctx).pop();
             },
           ),

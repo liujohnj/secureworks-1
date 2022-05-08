@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:game_1/show_challenges_menu.dart';
+import 'package:game_1/show_scratchpad.dart';
 
 import 'main.dart';
 
@@ -26,6 +27,7 @@ void showMenu(BuildContext ctx, challenges) {
             onPressed: () {
               scratchpad.contents.add("this is a password I found");
               print('You have selected to Show Scratchpad');
+              showScratchpad(ctx);
               print(scratchpad.contents);
               //Navigator.of(ctx).pop();
             },

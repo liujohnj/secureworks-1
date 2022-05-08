@@ -33,7 +33,7 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
     late String message;
     if (in_dialog == false) {
       in_dialog = true;
-      challenges.logout_laxness = true;
+      challenges.logout_laziness = true;
       if (name == 'Alice') {
         if (first_contact_alice == true) {
           message =
@@ -46,18 +46,9 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
         message = "My name is Bob";
       }
 
-
       dialogBox = DialogBox(text: message, size: gameRef.size, position: Vector2(x + x_offset, y + y_offset));
       gameRef.add(dialogBox);
-
-      /*
-      Future.delayed(Duration(seconds: 15), () {
-        print("removing");
-        gameRef.remove(dialogBox);
-        print("removed");
-        in_dialog = false;
-      });
-      */
+      print("ADDED");
     }
   }
 
@@ -65,11 +56,14 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
   void onCollisionEnd(PositionComponent other) {
     print('I made a contact');
 
+    Future.delayed(Duration(seconds: 3), () {
+      print("delaying");
+      gameRef.remove(dialogBox);
+      in_dialog = false;
+    });
     // var message = "Hello, you must be the new intern. My name is Alice. How are you?";
     // DialogBox dialogBox = DialogBox(text: message, size: gameRef.size);
     // gameRef.remove(dialogBox);
-    gameRef.remove(dialogBox);
-    in_dialog = false;
     gameRef.numChallengesCompleted++;
     gameRef.overlays.notifyListeners();
     // remove(this);  <-- this will remove bounding box
