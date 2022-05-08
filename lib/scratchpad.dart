@@ -13,4 +13,21 @@ class Scratchpad {
     'olivia_hash': 'n/a',
     'intercepted packets': 'n/a',
   };
+
+  var credentials_list = {
+    'Alice': ['n/a', 'n/a'],
+    'Bob': ['n/a', 'n/a'],
+    'Craig': ['n/a', 'n/a'],
+    'Grace': ['n/a', 'n/a'],
+    'Olivia': ['n/a', 'n/a'],
+    'intercepted packets': 'n/a',
+  };
+
+  Map credentials = {
+    'Alice': {'pw': 'n/a', 'hash': 'n/a', 'other': 'n/a'},
+    'Bob': {'pw': 'n/a', 'hash': 'n/a', 'other': 'n/a'},
+    'Craig': {'pw': 'n/a', 'hash': 'n/a', 'other': 'n/a'},
+    'Grace': {'pw': 'n/a', 'hash': 'n/a', 'other': 'n/a'},
+    'Olivia': {'pw': 'n/a', 'hash': 'n/a', 'other': 'n/a'},
+  };
 }

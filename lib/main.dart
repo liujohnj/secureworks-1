@@ -63,8 +63,17 @@ class MyGame extends FlameGame with HasCollisionDetection {
 
     final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Characters');
     final obstacleGroup = homeMap.tileMap.getObjectGroupFromLayer('Obstacles');
+    //final employeeGroup = homeMap.tileMap.getLayer('Characters');
+    //final obstacleGroup = homeMap.tileMap.getLayer('Obstacles');
 
+    /*
     for (final obj in obstacleGroup!.objects) {
+      add(Obstacles(size: Vector2(obj.width, obj.height),
+          position: Vector2(obj.x, obj.y)));
+    }
+     */
+
+    for (final obj in obstacleGroup.objects) {
       add(Obstacles(size: Vector2(obj.width, obj.height),
           position: Vector2(obj.x, obj.y)));
     }
@@ -102,6 +111,7 @@ class MyGame extends FlameGame with HasCollisionDetection {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
+  Flame.device.setLandscape();
   runApp(const App());
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_1/show_login_attempt.dart';
 
 void showMonitor(BuildContext context) {
   double width = MediaQuery.of(context).size.width;    // screen width
@@ -91,7 +92,10 @@ void showMonitor(BuildContext context) {
                       const TextStyle(fontSize: 20.0),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    print("employee is ${dropdownValue}");
+                    showLoginAttempt(context, dropdownValue);
+
+                    //Navigator.of(context).pop();
                   }
                 ),
                 SizedBox(
