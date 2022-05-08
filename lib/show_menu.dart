@@ -7,63 +7,65 @@ import 'package:game_1/show_scratchpad.dart';
 
 import 'main.dart';
 
-void showMenu(BuildContext ctx, challenges) {
+void showMenu(BuildContext context, challenges) {
+  const TextStyle text_style = TextStyle(color: Colors.black, fontSize: 18.0);
+  
   showDialog(
-    context: ctx,
+    context: context,
     builder: (_) {
       return SimpleDialog(
-        title: const Text('Menu', style: TextStyle(color: Colors.green)),
-        backgroundColor: Colors.black,
+        title: const Text('Menu', style: TextStyle(color: Colors.black)),
+        backgroundColor: Colors.white,
         children: [
           SimpleDialogOption(
-            child: const Text('View Challenges', style: TextStyle(color: Colors.green)),
+            child: const Text('View Challenges', style: text_style),
             onPressed: () {
-              showChallenges(ctx, challenges);
+              showChallenges(context, challenges);
               print('You have selected to View Challenges');
-              //Navigator.of(ctx).pop();
+              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Show Scratchpad', style: TextStyle(color: Colors.green)),
+            child: const Text('Show Scratchpad', style: text_style),
             onPressed: () {
-              scratchpad.contents.add("this is a password I found");
               print('You have selected to Show Scratchpad');
-              showScratchpad(ctx);
+              showScratchpad(context);
               print(scratchpad.contents);
-              //Navigator.of(ctx).pop();
+              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Use USB Thumbdrive', style: TextStyle(color: Colors.green)),
+            child: const Text('Use USB Thumbdrive', style: text_style),
             onPressed: () {
-              showMonitor(ctx);
+              showMonitor(context);
               //DropDownMonitor monitor = DropDownMonitor();
               print('You have selected to use USB Thumbdrive');
-              // Navigator.of(ctx).pop();
+              // Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Use Snifter', style: TextStyle(color: Colors.green)),
+            child: const Text('Use Snifter', style: text_style),
             onPressed: () {
               // Do something
               print('You have selected to use Snifter');
-              Navigator.of(ctx).pop();
+              Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Close Menu', style: TextStyle(color: Colors.green)),
+            child: const Text('Close Menu', style: text_style),
             onPressed: () {
               // Do something
               print('You have selected to Close Menu');
-              Navigator.of(ctx).pop();
+              Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Quit Game', style: TextStyle(color: Colors.green)),
+            child: const Text('Quit Game', style: text_style),
             onPressed: () {
               // Do something
+              print(scratchpad.contents.length);
               print('You have selected to Quit Game');
-              Navigator.of(ctx).pop();
+              Navigator.of(context).pop();
             },
           )
         ],

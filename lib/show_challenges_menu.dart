@@ -10,12 +10,11 @@ import 'main.dart';
 
 void showChallenges(BuildContext ctx, challenges) {
   const colorChallengeText = Colors.black;
-
+  const TextStyle text_style = TextStyle(color: Colors.black, fontSize: 18.0);
+  
   showDialog(
     context: ctx,
     builder: (_) {
-
-
      String X_logout_laziness = "[  ]  ";
      String X_brute_raise = "[  ]  ";
      String X_sticky_note = "[  ]  ";
@@ -25,14 +24,13 @@ void showChallenges(BuildContext ctx, challenges) {
      if (challenges.logout_laziness == true) {
        X_logout_laziness = "[X]  ";
      }
-
-
+     
       return SimpleDialog(
         title: const Text('Menu', style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.tealAccent,
         children: [
           SimpleDialogOption(
-            child: Text(X_logout_laziness + "Logout laziness (...more)", style: TextStyle(color: colorChallengeText)),
+            child: Text(X_logout_laziness + "Logout laziness (...more)", style: text_style),
             onPressed: () {
               //showChallenges(ctx, challenges);
               print('Logout laziness');
@@ -40,7 +38,7 @@ void showChallenges(BuildContext ctx, challenges) {
             },
           ),
           SimpleDialogOption(
-            child: Text(X_brute_raise + 'Be a brute & give yourself a raise (...more)', style: TextStyle(color: colorChallengeText)),
+            child: Text(X_brute_raise + 'Be a brute & give yourself a raise (...more)', style: text_style),
             onPressed: () {
               // Do something
               print('Brute force');
@@ -48,7 +46,7 @@ void showChallenges(BuildContext ctx, challenges) {
             },
           ),
           SimpleDialogOption(
-            child: Text(X_sticky_note + 'Sticky note no-no (...more)', style: TextStyle(color: colorChallengeText)),
+            child: Text(X_sticky_note + 'Sticky note no-no (...more)', style: text_style),
             onPressed: () {
               // Do something
               print('Sticky note');
@@ -56,7 +54,7 @@ void showChallenges(BuildContext ctx, challenges) {
             },
           ),
           SimpleDialogOption(
-            child: Text(X_ripped_hash + 'Serve up John the Ripper some hash (...more)', style: TextStyle(color: colorChallengeText)),
+            child: Text(X_ripped_hash + 'Serve up John the Ripper some hash (...more)', style: text_style),
             onPressed: () {
               // Do something
               print('John the Ripper');
@@ -64,7 +62,7 @@ void showChallenges(BuildContext ctx, challenges) {
             },
           ),
           SimpleDialogOption(
-            child: Text(X_compromise_park + 'Compromise in the park (...more)', style: TextStyle(color: colorChallengeText)),
+            child: Text(X_compromise_park + 'Compromise in the park (...more)', style: text_style),
             onPressed: () {
               showChallengeCompromisePark(ctx);
               print('Compromise in the park');
@@ -72,7 +70,7 @@ void showChallenges(BuildContext ctx, challenges) {
             },
           ),
           SimpleDialogOption(
-            child: const Text('Close', style: TextStyle(color: colorChallengeText)),
+            child: const Text('Close', style: text_style),
             onPressed: () {
               // Do something
               print('You have selected to close');

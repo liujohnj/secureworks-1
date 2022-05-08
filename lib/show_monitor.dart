@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 void showMonitor(BuildContext context) {
+  double width = MediaQuery.of(context).size.width;    // screen width
+  double height = MediaQuery.of(context).size.height;    // screen height
 
   showDialog(
     context: context,
@@ -14,13 +16,14 @@ void showMonitor(BuildContext context) {
             ),
             insetPadding: EdgeInsets.all(10),
             title: Text(
-                "Login Page",
-                style: TextStyle(color: Colors.green, fontSize: 32.0)),
+                "Employee Login Page",
+                style: TextStyle(color: Colors.green, fontSize: 28.0)),
             backgroundColor: Colors.black,
             content: Column(
               children: <Widget>[
                 Container(
-                  width: 500,
+                  width: width * 0.5,
+                  height: 20,
                 ),
                 DropdownButton(
                   dropdownColor: Colors.black38,
@@ -46,6 +49,65 @@ void showMonitor(BuildContext context) {
                       child: Text(value),
                     );
                   }).toList(),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                /*
+                Container(
+                  width: width * 0.35,
+                  child: const TextField(
+                    readOnly: true,
+                    obscureText: true,
+                    style: TextStyle(color: Colors.green),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 1.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green, width: 1.0)
+                      ),
+                      hintText: 'password',
+                      hintStyle: TextStyle(color: Colors.green, fontSize: 18.0),
+                      isDense: true,
+                    )
+                  )
+                ),
+                */
+                TextButton(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child:
+                      const Text("password", textAlign: TextAlign.left),
+                  ),
+                    style: TextButton.styleFrom(
+                    primary: Colors.green,
+                    backgroundColor: Colors.transparent,
+                    //minimumSize: Size(width * 0.35, 50),
+                    maximumSize: Size(width * 0.35, 50),
+                    //padding: 20.0,
+                    side: BorderSide(color: Colors.green, width: 1.0),
+                    textStyle:
+                      const TextStyle(fontSize: 20.0),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                TextButton(
+                    child: const Text("Login"),
+                    style: TextButton.styleFrom(
+                        primary: Colors.black,
+                        backgroundColor: Colors.green,
+                        textStyle:
+                        const TextStyle(fontSize: 20.0)
+                    ),
+                    onPressed: () {
+                      //Navigator.of(context).pop();
+                    }
                 ),
               ],
             ),

@@ -5,8 +5,6 @@ import 'main.dart';
 
 void showScratchpad(BuildContext context) {
   print("showScratchpad activated");
-  print(scratchpad.contents.length);
-
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -22,21 +20,10 @@ void showScratchpad(BuildContext context) {
                     shrinkWrap: true,
                     itemCount: scratchpad.contents.length,
                     itemBuilder: (BuildContext context, int index) {
-                      String key = scratchpad.contents.keys.elementAt(index);
-                      return Column(
-                        children: <Widget>[
-                          ListTile(
-                            title: Text("${key}:"),
-                            subtitle: Text("${scratchpad.contents[key]}"),
-                          ),
-                          /*
-                          Divider(
-                            height: 1.0,
-                          ),
-                           */
-                        ],
+                      return ListTile(
+                        title: Text(scratchpad.contents[index]),
                       );
-                    },
+                    }
                   )
                 ),
             ),
