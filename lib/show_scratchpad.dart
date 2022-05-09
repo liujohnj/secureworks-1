@@ -1,14 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'main.dart';
 
 void showScratchpad(BuildContext context) {
-  print("showScratchpad activated");
-  print(scratchpad.contents.length);
-  //var alice_values = scratchpad.credentials['Alice'];
-  //var alice_pw = alice_values['pw'];
-  print(scratchpad.credentials['Alice']);
 
   showDialog(
       context: context,
@@ -29,7 +23,7 @@ void showScratchpad(BuildContext context) {
                     children: <Widget>[
                       ListTile(
                         title: Text("${key}:"),
-                        subtitle: Text("pw: ${scratchpad.credentials[key]['pw']}\n"
+                        subtitle: Text("pwd: ${scratchpad.credentials[key]['pwd']}\n"
                             "hash: ${scratchpad.credentials[key]['hash']}\n"
                             "other: ${scratchpad.credentials[key]['other']}"),
                       ),

@@ -39,7 +39,7 @@ class EmployeeComponent extends PositionComponent with CollisionCallbacks, HasGa
           message =
           "Hello, you must be the new intern. My name is Alice. How are you?";
           first_contact_alice = false;
-          scratchpad.contents['alice_pw'] = 'password123';
+          scratchpad.credentials['Alice']['pwd'] = 'password123';
         } else {
           message = "Back so soon? Have a great day!";
         }

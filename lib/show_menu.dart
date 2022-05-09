@@ -30,7 +30,6 @@ void showMenu(BuildContext context, challenges) {
             onPressed: () {
               print('You have selected to Show Scratchpad');
               showScratchpad(context);
-              print(scratchpad.contents);
               //Navigator.of(context).pop();
             },
           ),
@@ -63,7 +62,6 @@ void showMenu(BuildContext context, challenges) {
             child: const Text('Quit Game', style: text_style),
             onPressed: () {
               // Do something
-              print(scratchpad.contents.length);
               print('You have selected to Quit Game');
               Navigator.of(context).pop();
             },
