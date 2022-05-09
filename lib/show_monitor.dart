@@ -43,7 +43,7 @@ void showMonitor(BuildContext context) {
                       dropdownValue = newValue!;
                     });
                   },
-                  items: <String>['Alice', 'Bob', 'Grace', 'Evan']
+                  items: <String>['Alice', 'Bob', 'Eve', 'Craig', 'Grace', 'Olivia']
                       .map<DropdownMenuItem<String>>((String value){
                     return DropdownMenuItem<String>(
                       value: value,

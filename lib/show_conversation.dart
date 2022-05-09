@@ -7,7 +7,7 @@ import 'package:flame/palette.dart';
 
 final style = TextStyle(
     color: BasicPalette.white.color,
-    fontSize: 24.0,
+    fontSize: 16.0,
     fontFamily: 'Awesome Font',
     //fontWeight: FontWeight.bold,
 );
@@ -24,7 +24,7 @@ class DialogBox extends TextBoxComponent with HasGameRef {
     textRenderer: regular,
     //position: size,
     //position: Vector2(541, 864),
-    boxConfig: TextBoxConfig(dismissDelay: 5.0, maxWidth: size.x * 0.4, timePerChar: 0.1,)
+    boxConfig: TextBoxConfig(dismissDelay: 5.0, maxWidth: size.x * 0.4, timePerChar: 0.05,)
   ) {
     //anchor = Anchor.centerRight;
     //anchor = Anchor.Vector2(541,864);

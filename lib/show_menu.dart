@@ -34,16 +34,16 @@ void showMenu(BuildContext context, challenges) {
             },
           ),
           SimpleDialogOption(
-            child: const Text('Use USB Thumbdrive', style: text_style),
+            child: const Text('Login Workstation', style: text_style),
             onPressed: () {
               showMonitor(context);
               //DropDownMonitor monitor = DropDownMonitor();
-              print('You have selected to use USB Thumbdrive');
+              print('You are logging in');
               // Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Use Snifter', style: text_style),
+            child: const Text('Use Wifi Snifter', style: text_style),
             onPressed: () {
               // Do something
               print('You have selected to use Snifter');

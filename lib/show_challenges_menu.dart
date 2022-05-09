@@ -24,6 +24,18 @@ void showChallenges(BuildContext ctx, challenges) {
      if (challenges.logout_laziness == true) {
        X_logout_laziness = "[X]  ";
      }
+     if (challenges.brute_raise == true) {
+       X_brute_raise = "[X]  ";
+     }
+     if (challenges.sticky_note == true) {
+       X_sticky_note = "[X]  ";
+     }
+     if (challenges.brute_raise == true) {
+       X_ripped_hash = "[X]  ";
+     }
+     if (challenges.brute_raise == true) {
+       X_compromise_park = "[X]  ";
+     }
      
       return SimpleDialog(
         title: const Text('Menu', style: TextStyle(color: Colors.black)),
