@@ -14,24 +14,24 @@ class ButtonController extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              icon: const Icon(Icons.volume_up_rounded),
-              color: Colors.pink.shade200,
+              icon: const Icon(Icons.volume_up_rounded, size: 40.0),
+              color: Colors.deepPurple,
               onPressed: () {
                 FlameAudio.bgm.play('bensound-enigmatic.mp3');
               },
             ),
 
             IconButton(
-              icon: const Icon(Icons.volume_off_rounded),
-              color: Colors.pink.shade200,
+              icon: const Icon(Icons.volume_off_rounded, size: 40.0),
+              color: Colors.deepPurple,
               onPressed: () {
                 FlameAudio.bgm.stop();
               },
             ),
-
+            /*
             Text(
               game.soundTrackName,
-              style: TextStyle(color: Colors.pink.shade200, fontSize: 20),
+              style: TextStyle(color: Colors.red, fontSize: 20),
             ),
 
             Spacer(),
@@ -46,6 +46,7 @@ class ButtonController extends StatelessWidget {
                 '${game.numChallengesCompleted}',
                 style: TextStyle(fontSize: 28, color: Colors.black45),
             ),
+             */
           ],
         ),
       ],

@@ -24,7 +24,7 @@ class DialogBox extends TextBoxComponent with HasGameRef {
     textRenderer: regular,
     //position: size,
     //position: Vector2(541, 864),
-    boxConfig: TextBoxConfig(dismissDelay: 5.0, maxWidth: size.x * 0.4, timePerChar: 0.05,)
+    boxConfig: TextBoxConfig(dismissDelay: 5.0, maxWidth: size.x * 0.4, timePerChar: 0.025)
   ) {
     //anchor = Anchor.centerRight;
     //anchor = Anchor.Vector2(541,864);

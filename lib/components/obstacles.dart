@@ -3,7 +3,7 @@ import 'package:flame/components.dart';
 
 class Obstacles extends PositionComponent {
   Obstacles({required size, required position}) : super(size: size, position: position) {
-    debugMode = true;
+    debugMode = false;
   }
 
   @override

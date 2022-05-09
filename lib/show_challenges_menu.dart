@@ -2,18 +2,17 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:game_1/show_challenge_compromise_park.dart';
 import 'package:game_1/show_challenges_menu.dart';
 import 'challenges.dart';
 
 import 'main.dart';
 
-void showChallenges(BuildContext ctx, challenges) {
+void showChallenges(BuildContext context, challenges) {
   const colorChallengeText = Colors.black;
   const TextStyle text_style = TextStyle(color: Colors.black, fontSize: 18.0);
   
   showDialog(
-    context: ctx,
+    context: context,
     builder: (_) {
      String X_logout_laziness = "[  ]  ";
      String X_brute_raise = "[  ]  ";
@@ -30,10 +29,10 @@ void showChallenges(BuildContext ctx, challenges) {
      if (challenges.sticky_note == true) {
        X_sticky_note = "[X]  ";
      }
-     if (challenges.brute_raise == true) {
+     if (challenges.ripped_hash == true) {
        X_ripped_hash = "[X]  ";
      }
-     if (challenges.brute_raise == true) {
+     if (challenges.compromise_park == true) {
        X_compromise_park = "[X]  ";
      }
      
@@ -42,51 +41,49 @@ void showChallenges(BuildContext ctx, challenges) {
         backgroundColor: Colors.tealAccent,
         children: [
           SimpleDialogOption(
-            child: Text(X_logout_laziness + "Logout laziness (...more)", style: text_style),
+            child: Text(X_logout_laziness + "Identify logout laziness", style: text_style),
             onPressed: () {
-              //showChallenges(ctx, challenges);
+              //showChallenges(context, challenges);
               print('Logout laziness');
-              //Navigator.of(ctx).pop();
+              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: Text(X_brute_raise + 'Be a brute & give yourself a raise (...more)', style: text_style),
+            child: Text(X_brute_raise + 'Be a brute & give yourself a raise', style: text_style),
             onPressed: () {
               // Do something
-              print('Brute force');
-              Navigator.of(ctx).pop();
+              //print('Brute force');
+              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: Text(X_sticky_note + 'Sticky note no-no (...more)', style: text_style),
+            child: Text(X_sticky_note + 'Sticky note no-no', style: text_style),
             onPressed: () {
               // Do something
-              print('Sticky note');
-              Navigator.of(ctx).pop();
+              // Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: Text(X_ripped_hash + 'Serve up John the Ripper some hash (...more)', style: text_style),
+            child: Text(X_ripped_hash + 'Serve up John the Ripper some hash', style: text_style),
             onPressed: () {
               // Do something
-              print('John the Ripper');
-              Navigator.of(ctx).pop();
+              //print('John the Ripper');
+              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: Text(X_compromise_park + 'Compromise in the park (...more)', style: text_style),
+            child: Text(X_compromise_park + 'Compromise in the park :)', style: text_style),
             onPressed: () {
-              showChallengeCompromisePark(ctx);
-              print('Compromise in the park');
-              //Navigator.of(ctx).pop();
+              //print('Compromise in the park');
+              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
             child: const Text('Close', style: text_style),
             onPressed: () {
               // Do something
-              print('You have selected to close');
-              Navigator.of(ctx).pop();
+              //print('You have selected to close');
+              Navigator.of(context).pop();
             },
           )
         ],

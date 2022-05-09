@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:game_1/show_challenges_menu.dart';
 import 'package:game_1/show_monitor.dart';
 import 'package:game_1/show_scratchpad.dart';
@@ -28,42 +29,25 @@ void showMenu(BuildContext context, challenges) {
           SimpleDialogOption(
             child: const Text('Show Scratchpad', style: text_style),
             onPressed: () {
-              print('You have selected to Show Scratchpad');
               showScratchpad(context);
-              //Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
-            child: const Text('Login Workstation', style: text_style),
+            child: const Text('Login at Workstation', style: text_style),
             onPressed: () {
               showMonitor(context);
-              //DropDownMonitor monitor = DropDownMonitor();
-              print('You are logging in');
-              // Navigator.of(context).pop();
-            },
-          ),
-          SimpleDialogOption(
-            child: const Text('Use Wifi Snifter', style: text_style),
-            onPressed: () {
-              // Do something
-              print('You have selected to use Snifter');
-              Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
             child: const Text('Close Menu', style: text_style),
             onPressed: () {
-              // Do something
-              print('You have selected to Close Menu');
               Navigator.of(context).pop();
             },
           ),
           SimpleDialogOption(
             child: const Text('Quit Game', style: text_style),
             onPressed: () {
-              // Do something
-              print('You have selected to Quit Game');
-              Navigator.of(context).pop();
+              SystemNavigator.pop();
             },
           )
         ],

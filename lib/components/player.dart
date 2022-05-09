@@ -24,7 +24,7 @@ class Player extends SpriteAnimationComponent
 
   //PlayerComponent({required this.game}) {
   Player() : super(size: Vector2(32, 64), position: Vector2(342, 690),) {
-    debugMode = true;
+    debugMode = false;
     add(RectangleHitbox());
   }
 

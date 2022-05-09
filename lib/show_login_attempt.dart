@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'login_as_other.dart';
 import 'main.dart';
 
 void showLoginAttempt(BuildContext context, String username) {
@@ -13,22 +14,22 @@ void showLoginAttempt(BuildContext context, String username) {
   print("${username} : ${has_pwd} : ${has_hash}");
 
   String text_string = '';
-  String button_text = 'Close';
+  bool can_proceed = false;
 
   if (has_pwd) {
     text_string = "You have ${username}\'s plain text password in your "
-        "Scratchpad. Click Proceed to log in as ${username}.";
-    button_text = 'Proceed';
+        "Scratchpad.\n\nClick Proceed to log in as ${username}.";
+    can_proceed = true;
   } else if (has_hash) {
-    text_string = "You have ${username}\'s encrypted, hashed password in your "
-        "Scratchpad. Click Proceed to run the John the Ripper password "
-        "cracker to see if the hash appears in its dictionary?";
-    button_text = 'Proceed';
+    text_string = "You have ${username}\'s encrypted (hashed) password in your "
+        "Scratchpad.\n\nClick Proceed to run a dictionary attack using the John "
+        "the Ripper password cracking tool.";
+    can_proceed = true;
   } else if (other == 'Password is 4 lowercase letters.') {
-    text_string = "${username}\'s password is only 4 lowercase letters. Click "
-        "Proceed to perform an automated brute force attack? There are only "
+    text_string = "${username}\'s password is only 4 lowercase letters.\n\nClick "
+        "Proceed to perform an automated brute force attack.\n\nThere are only "
         "456,976 possible combinations. It should take no time at all.";
-    button_text = 'Proceed';
+    can_proceed = true;
   } else {
     text_string = "You do not have ${username}\'s plain password or hashed "
         "password.";
@@ -49,20 +50,18 @@ void showLoginAttempt(BuildContext context, String username) {
             ),
             actions: <Widget>[
               TextButton(
-                child: Text(button_text),
+                child: Text('Proceed'),
                 onPressed: () {
-                  if (button_text == 'Proceed') {
-                    if (username == 'Grace') {
-
-                    }
-                    else if (username == 'Craig') {
-
-                    }
-                  }
-                  else {
-                    Navigator.of(context).pop();
+                  if (can_proceed) {
+                    loginAsOther(context, username);
                   }
                 }
+              ),
+              TextButton(
+                  child: Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }
               ),
             ],
         );
