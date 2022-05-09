@@ -86,6 +86,20 @@ flutter:
     - assets/images/Premade_Character_32x32_15.png
     - assets/images/Room_Builder_3d_walls_32x32.png
     - assets/images/Room_Builder_Office_32x32.png
+    - assets/images/animated_receptionist_32x32.gif
+    - assets/images/animated_receptionist_2_32x32.gif
+    - assets/images/Premade_Character_32x32_01.png
+    - assets/images/office.png
+    - assets/tiles/office.tmx
+    - assets/tiles/office_2_export.tmx
+    - assets/images/office_2_export.png
+    - assets/tiles/map.tmx
+    - assets/images/Modern_Exteriors_RTU_2_preview_32x32.png
+    - assets/images/Modern_Exteriors_Singles_Flowers_32x32_2.png
+    - assets/images/Modern_Exteriors_Singles_Fountain_32x32_1.png
+    - assets/images/Modern_Exteriors_Singles_Tree_32x32_1.png
+    - assets/images/Modern_Exteriors_Singles_Tree_32x32_8.png
+    - assets/images/Premade_Character_32x32_07.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

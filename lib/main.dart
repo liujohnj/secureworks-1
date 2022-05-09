@@ -1,5 +1,4 @@
 import 'package:flame/collisions.dart';
-import 'package:flame/collisions.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
@@ -49,20 +48,18 @@ class MyGame extends FlameGame with HasCollisionDetection {
   Future<void> onLoad() async {
     await super.onLoad();
     final homeMap = await TiledComponent.load(
-        'floor_plan_1.tmx', Vector2.all(32.0));
+      'map.tmx', Vector2.all(32.0));
     add(homeMap);
 
     mapWidth = homeMap.tileMap.map.width * 32.0;
     mapHeight = homeMap.tileMap.map.height * 32.0;
 
-    add(TextComponent(text: 'Hello, Flame Helo, flame hello, falame', textRenderer: regular)
-    //..anchor = Anchor.centerLeft
-      ..position = Vector2(541, 864)
-      ..x = 541
-      ..y = 864);
-
     final employeeGroup = homeMap.tileMap.getObjectGroupFromLayer('Characters');
     final obstacleGroup = homeMap.tileMap.getObjectGroupFromLayer('Obstacles');
+    //final dialogGroup = homeMap.tileMap.getObjectGroupFromLayer('Dialogs');
+    //final textGroup = homeMap.tileMap.getObjectGroupFromLayer('Text');
+    //final aliceGroup = homeMap.tileMap.getObjectGroupFromLayer('Alice');
+    //final oliviaGroup = homeMap.tileMap.getObjectGroupFromLayer('Olivia');
     //final employeeGroup = homeMap.tileMap.getLayer('Characters');
     //final obstacleGroup = homeMap.tileMap.getLayer('Obstacles');
 
