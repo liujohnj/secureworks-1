@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flame/collisions.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -46,6 +48,10 @@ class MyGame extends FlameGame with HasCollisionDetection {
 
   @override
   Future<void> onLoad() async {
+
+    double maxSide = min(size.x, size.y);
+    camera.viewport = FixedResolutionViewport((Vector2.all(maxSide)));
+
     await super.onLoad();
     final homeMap = await TiledComponent.load(
       'map.tmx', Vector2.all(32.0));
